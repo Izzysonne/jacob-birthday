@@ -1,95 +1,396 @@
-:root{
-  --bg:#100910;
-  --panel:rgba(70,34,54,.72);
-  --gold:#f3d79b;
-  --gold2:#fff0c7;
-  --text:#fff8fb;
-  --muted:#d9c8d3;
-  --wrong:#ff8d9f;
-  --right:#a9e6c1;
-  --border:rgba(243,215,155,.35);
-}
-*{box-sizing:border-box}
-html,body{margin:0;min-height:100%;background:linear-gradient(180deg,#100910,#180d18 55%,#0d080e);color:var(--text)}
-body{
-  min-height:100vh;
-  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  overflow-x:hidden;
-}
-.stars{
-  position:fixed;inset:0;pointer-events:none;opacity:.65;
-  background-image:radial-gradient(circle,rgba(255,255,255,.8) 1px,transparent 1.5px),
-  radial-gradient(circle,rgba(243,215,155,.45) 1px,transparent 1.5px);
-  background-size:95px 95px,145px 145px;
-  background-position:10px 20px,45px 80px;
-}
-.app{width:min(100%,560px);margin:0 auto;padding:24px 18px 60px;position:relative;z-index:1}
-.screen{display:none;min-height:calc(100vh - 84px);align-items:center;justify-content:center}
-.screen.active{display:flex;animation:fade .45s ease both}
-@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.card{
-  width:100%;padding:28px 22px;border:1px solid var(--border);border-radius:28px;
-  background:linear-gradient(145deg,rgba(82,42,64,.78),rgba(35,18,31,.9));
-  box-shadow:0 25px 80px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.08);
-  backdrop-filter:blur(16px)
-}
-.eyebrow{
-  display:inline-flex;border:1px solid var(--border);border-radius:999px;padding:9px 14px;
-  color:var(--gold2);letter-spacing:.2em;font-size:.72rem;text-transform:uppercase;margin-bottom:18px
-}
-h1,h2{font-family:Georgia,"Times New Roman",serif;font-weight:500;line-height:1.05;margin:0 0 18px}
-h1{font-size:clamp(3rem,14vw,5rem)}
-h2{font-size:clamp(2.2rem,10vw,3.6rem)}
-p{color:var(--muted);line-height:1.7;font-size:1rem;margin:0 0 20px}
-strong{color:var(--gold2)}
-.gold{color:var(--gold2)}
-.center{text-align:center}
-button{
-  width:100%;border:0;border-radius:999px;padding:16px 20px;margin-top:10px;
-  background:linear-gradient(135deg,var(--gold2),var(--gold));color:#2b1824;
-  font-weight:800;font-size:1rem;cursor:pointer;box-shadow:0 12px 30px rgba(243,215,155,.16);
-  transition:transform .18s ease,box-shadow .18s ease,opacity .18s ease
-}
-button:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(243,215,155,.23)}
-button:active{transform:translateY(0)}
-button.secondary{background:rgba(255,255,255,.07);color:var(--text);border:1px solid rgba(255,255,255,.14);box-shadow:none}
-button:disabled{opacity:.45;cursor:not-allowed}
-.question-number{color:var(--gold);letter-spacing:.15em;font-size:.75rem;text-transform:uppercase;margin-bottom:10px}
-.progress{height:6px;background:rgba(255,255,255,.09);border-radius:99px;overflow:hidden;margin:18px 0 26px}
-.progress span{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--gold),var(--gold2));transition:width .35s ease}
-.options{display:grid;gap:11px;margin:20px 0}
-.option{
-  text-align:left;width:100%;padding:15px 16px;border-radius:17px;background:rgba(255,255,255,.055);
-  border:1px solid rgba(255,255,255,.12);color:var(--text);font-weight:600;box-shadow:none;margin:0
-}
-.option.selected{border-color:var(--gold);background:rgba(243,215,155,.12)}
-.option.correct{border-color:var(--right);background:rgba(169,230,193,.1)}
-.option.wrong{border-color:var(--wrong);background:rgba(255,141,159,.08)}
-.answer-input{
-  width:100%;padding:16px;border-radius:16px;border:1px solid rgba(255,255,255,.14);
-  background:rgba(0,0,0,.18);color:white;font-size:1.05rem;outline:none
-}
-.answer-input:focus{border-color:var(--gold)}
-.feedback{min-height:25px;font-size:.9rem;color:var(--muted);text-align:center;margin:8px 0}
-.gift-grid{display:grid;gap:15px;margin-top:22px}
-.gift{
-  text-align:left;padding:20px;border-radius:22px;border:1px solid var(--border);
-  background:rgba(255,255,255,.045);cursor:pointer;transition:transform .2s ease,background .2s ease
-}
-.gift:hover{transform:translateY(-3px);background:rgba(255,255,255,.08)}
-.gift .icon{font-size:2.4rem;margin-bottom:10px}
-.gift h3{margin:0 0 8px;font-size:1.25rem}
-.gift p{font-size:.9rem;margin:0}
-.gift .value{color:var(--gold2);font-weight:700;margin-top:10px}
-.voucher{border:1px solid var(--border);border-radius:24px;padding:24px 18px;background:rgba(255,255,255,.045);margin-top:20px}
-.voucher-code{margin:18px 0;padding:15px;border-radius:14px;border:1px dashed var(--border);color:var(--gold2);letter-spacing:.15em;font-weight:800}
-.small{font-size:.82rem;color:#bcaeb7}
-.confetti{position:fixed;top:-15px;width:8px;height:14px;z-index:20;animation:fall 2.8s linear forwards;pointer-events:none}
-@keyframes fall{to{transform:translate3d(var(--x),110vh,0) rotate(720deg);opacity:0}}
-@media (max-width:380px){
-  .app{padding-left:12px;padding-right:12px}
-  .card{padding:24px 18px}
-  h1{font-size:2.8rem}
+const questions = [
+  {
+    title: "The Jacob Test 👀",
+    text: "Whenever people call Jacob on a video call, what are they most likely to find him doing?",
+    type: "text",
+    answer: "eating",
+    hint: "One word. You already know this one. 😂"
+  },
+
+  {
+    title: "Math Mode 🧠",
+    text: "Jacob gave Isabella a little maths challenge once. Now it's his turn: calculate the integral below.",
+    type: "text",
+    answer: "2",
+    math: "∫₀² x dx = ?",
+    hint: "Find the area under y = x from 0 to 2. 😉"
+  },
+
+  {
+    title: "Anime Mode 🍥",
+    text: "A young ninja dreams of becoming the leader of his village. He grows up as an outcast, makes powerful friends, faces dangerous enemies and refuses to give up on his dream. What is the title of this anime?",
+    type: "text",
+    answer: "naruto",
+    hint: "You have watched this one... so this should be easy. 😂"
+  },
+
+  {
+    title: "The Hamburg Incident 🚶🏽‍♂️😂",
+    text: "If Jacob tells you, \"Oh, it's just here. It's so close,\" you should be prepared to...",
+    type: "text",
+    answer: "walk",
+    hint: "Think back to Hamburg. 😂"
+  }
+];
+
+let current = 0;
+let giftCountdownStarted = false;
+let giftChosen = false;
+
+
+// ==============================
+// SCREEN NAVIGATION
+// ==============================
+
+function showScreen(id) {
+  document.querySelectorAll(".screen").forEach(screen => {
+    screen.classList.remove("active");
+  });
+
+  document.getElementById(id).classList.add("active");
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+  if (id === "quiz") {
+    renderQuestion();
+  }
+
+  if (id === "gifts") {
+    startGiftCountdown();
+  }
 }
 
-.math-question{display:inline-block;font-family:Georgia,serif;font-size:1.45rem;color:var(--gold2);padding:10px 16px;border:1px solid var(--border);border-radius:14px;background:rgba(0,0,0,.15)}
+
+// ==============================
+// QUIZ
+// ==============================
+
+function renderQuestion() {
+  const q = questions[current];
+
+  document.getElementById("questionNumber").textContent =
+    `Question ${current + 1} of ${questions.length}`;
+
+  document.getElementById("progressBar").style.width =
+    `${(current / questions.length) * 100}%`;
+
+  document.getElementById("questionTitle").textContent =
+    q.title;
+
+  let questionText = q.text;
+
+  if (q.math) {
+    questionText +=
+      `<br><br><span class="math-question">${q.math}</span>`;
+  }
+
+  document.getElementById("questionText").innerHTML =
+    questionText;
+
+  document.getElementById("feedback").textContent = "";
+
+  const area = document.getElementById("answerArea");
+
+  area.innerHTML = `
+    <input
+      id="textAnswer"
+      class="answer-input"
+      type="text"
+      autocomplete="off"
+      autocapitalize="none"
+      placeholder="Type your answer here..."
+    >
+
+    <p class="small" style="margin-top:10px;">
+      ${q.hint}
+    </p>
+  `;
+
+  setTimeout(() => {
+    document.getElementById("textAnswer")?.focus();
+  }, 100);
+
+  document.getElementById("submitButton").textContent =
+    "SUBMIT";
+
+  document.getElementById("submitButton").disabled =
+    false;
+}
+
+
+// ==============================
+// CLEAN ANSWERS
+// ==============================
+
+function normalize(text) {
+  return text
+    .trim()
+    .toLowerCase()
+    .replace(/[.,!?]/g, "")
+    .replace(/\s+/g, " ");
+}
+
+
+// ==============================
+// CHECK ANSWER
+// ==============================
+
+function submitAnswer() {
+  const q = questions[current];
+
+  const input =
+    document.getElementById("textAnswer");
+
+  if (!input || !input.value.trim()) {
+    document.getElementById("feedback").textContent =
+      "Type an answer first. 👀";
+
+    return;
+  }
+
+  const correct =
+    normalize(input.value) ===
+    normalize(q.answer);
+
+  if (correct) {
+
+    document.getElementById("feedback").innerHTML =
+      `<span style="color:var(--right)">
+        Correct! ✓
+      </span>`;
+
+    document.getElementById("submitButton").disabled =
+      true;
+
+    setTimeout(() => {
+
+      current++;
+
+      if (current >= questions.length) {
+
+        document.getElementById("progressBar").style.width =
+          "100%";
+
+        showScreen("unlocked");
+
+      } else {
+
+        renderQuestion();
+
+      }
+
+    }, 650);
+
+  } else {
+
+    document.getElementById("feedback").innerHTML =
+      `<span style="color:var(--wrong)">
+        Not quite! Try again. 😏
+      </span>`;
+
+    input.focus();
+  }
+}
+
+
+// ==============================
+// MYSTERY GIFT COUNTDOWN
+// ==============================
+
+function startGiftCountdown() {
+
+  if (giftCountdownStarted) {
+    return;
+  }
+
+  giftCountdownStarted = true;
+
+  const countdown =
+    document.getElementById("countdown");
+
+  const intro =
+    document.getElementById("countdownIntro");
+
+  const mystery =
+    document.getElementById("mysteryArea");
+
+  mystery.classList.add("hidden");
+
+  countdown.textContent = "3";
+
+  intro.textContent =
+    "You have one chance. Choose wisely...";
+
+  let number = 3;
+
+  const timer =
+    setInterval(() => {
+
+      number--;
+
+      if (number > 0) {
+
+        countdown.textContent =
+          number;
+
+      } else {
+
+        countdown.textContent =
+          "0";
+
+        clearInterval(timer);
+
+        setTimeout(() => {
+
+          countdown.classList.add(
+            "countdown-finished"
+          );
+
+          intro.textContent =
+            "GO! Pick ONE gift box. 🎁";
+
+          mystery.classList.remove(
+            "hidden"
+          );
+
+        }, 350);
+      }
+
+    }, 900);
+}
+
+
+// ==============================
+// OPEN ONE MYSTERY BOX
+// ==============================
+
+function openBox(boxNumber) {
+
+  if (giftChosen) {
+    return;
+  }
+
+  giftChosen = true;
+
+  const chosen =
+    document.getElementById(
+      `box${boxNumber}`
+    );
+
+  const other =
+    document.getElementById(
+      `box${boxNumber === 1 ? 2 : 1}`
+    );
+
+  chosen.classList.add(
+    "opening"
+  );
+
+  other.classList.add(
+    "lost"
+  );
+
+  document
+    .querySelectorAll(".gift-box")
+    .forEach(box => {
+      box.disabled = true;
+    });
+
+  document.getElementById(
+    "boxHint"
+  ).textContent =
+    "The other gift is gone... 😈";
+
+
+  setTimeout(() => {
+
+    if (boxNumber === 1) {
+
+      revealGift(
+        "Couples Spa Experience 🧖🏽‍♂️❤️🧖🏽‍♀️",
+
+        `Jacob & Abigail, you found the
+        <strong>Couples Spa Experience</strong>!<br><br>
+        We hope you enjoy some well-deserved
+        time together.`
+      );
+
+    } else {
+
+      revealGift(
+        "Three-Course Dinner for Two 🍽️",
+
+        `Jacob & Abigail, you found the
+        <strong>Three-Course Dinner for Two</strong>!<br><br>
+        Good food and good company.`
+      );
+
+    }
+
+  }, 850);
+}
+
+
+// ==============================
+// REVEAL THE CHOSEN GIFT
+// ==============================
+
+function revealGift(title, message) {
+
+  document.getElementById(
+    "finalTitle"
+  ).textContent = title;
+
+  document.getElementById(
+    "finalMessage"
+  ).innerHTML = message;
+
+  document.getElementById(
+    "voucherCode"
+  ).textContent =
+    "HAPPY-BIRTHDAY-JACOB";
+
+  showScreen("final");
+
+  launchConfetti();
+}
+
+
+// ==============================
+// CONFETTI
+// ==============================
+
+function launchConfetti() {
+
+  for (let i = 0; i < 70; i++) {
+
+    const c =
+      document.createElement("div");
+
+    c.className =
+      "confetti";
+
+    c.style.left =
+      (Math.random() * 100) + "vw";
+
+    c.style.setProperty(
+      "--x",
+      ((Math.random() - 0.5) * 220) + "px"
+    );
+
+    c.style.animationDelay =
+      (Math.random() * 0.8) + "s";
+
+    c.style.transform =
+      `rotate(${Math.random() * 360}deg)`;
+
+    document.body.appendChild(c);
+
+    setTimeout(() => {
+      c.remove();
+    }, 3800);
+  }
+}
