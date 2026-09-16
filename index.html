@@ -1,106 +1,433 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#100910">
-  <title>Jacob's Birthday Surprise 🎁</title>
-  <link rel="stylesheet" href="style.css">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#100910"
+  >
+
+  <title>
+    Jacob's Birthday Surprise 🎁
+  </title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+
 </head>
+
+
 <body>
+
+  <!-- Background -->
   <div class="stars"></div>
 
+
   <main class="app">
-    <!-- WELCOME -->
-    <section class="screen active" id="welcome">
+
+
+    <!-- ================================= -->
+    <!-- WELCOME SCREEN -->
+    <!-- ================================= -->
+
+    <section
+      class="screen active"
+      id="welcome"
+    >
+
       <div class="card center">
-        <div class="eyebrow">A Birthday Surprise</div>
-        <h1>Alles Gute zum Geburtstag, <span class="gold">Jacob!</span> ✨</h1>
-        <p>
-          We got you something... but you can't have it just yet. 😌
-          <br><br>
-          First, you have to prove that you really are <strong>Jacob.</strong>
-        </p>
-        <button onclick="showScreen('quiz')">UNLOCK MY GIFT</button>
-        <p class="small" style="margin-top:18px;">From Isabella &amp; [Husband's Name] ❤️</p>
-      </div>
-    </section>
 
-    <!-- QUIZ -->
-    <section class="screen" id="quiz">
-      <div class="card">
-        <div class="question-number" id="questionNumber">Question 1 of 4</div>
-        <div class="progress"><span id="progressBar"></span></div>
-
-        <h2 id="questionTitle"></h2>
-        <p id="questionText"></p>
-
-        <div id="answerArea"></div>
-
-        <div class="feedback" id="feedback"></div>
-        <button id="submitButton" onclick="submitAnswer()">SUBMIT</button>
-      </div>
-    </section>
-
-    <!-- UNLOCKED -->
-    <section class="screen" id="unlocked">
-      <div class="card center">
-        <div class="eyebrow">Access Granted 🔓</div>
-        <h2>You Did It, Jacob! 🎉</h2>
-        <p>
-          The birthday vault has been unlocked.
-          <br><br>
-          But we have one last decision for you...
-        </p>
-        <button onclick="showScreen('gifts'); launchConfetti()">REVEAL MY GIFT</button>
-      </div>
-    </section>
-
-    <!-- GIFTS -->
-    <section class="screen" id="gifts">
-      <div class="card">
-        <div class="eyebrow">Your Birthday Gift</div>
-        <h2 class="center">You Get To Choose. ❤️</h2>
-        <p class="center">
-          We wanted to give you and Abigail an experience you can enjoy together.
-          So... which one are you choosing?
-        </p>
-
-        <div class="gift-grid">
-          <div class="gift" onclick="chooseGift('spa')">
-            <div class="icon">🧖🏽‍♂️🧖🏽‍♀️</div>
-            <h3>The Luxury Spa Escape</h3>
-            <p>A couples spa experience for Jacob &amp; Abigail. Relax, unwind and enjoy some quality time together.</p>
-            <div class="value">Luxury couples experience</div>
-          </div>
-
-          <div class="gift" onclick="chooseGift('dinner')">
-            <div class="icon">🍷🍽️</div>
-            <h3>Date Night</h3>
-            <p>A romantic three-course dinner for two, with wine, good food and even better company.</p>
-            <div class="value">€99 for two</div>
-          </div>
+        <div class="eyebrow">
+          A Birthday Surprise
         </div>
+
+
+        <h1>
+
+          Alles Gute zum Geburtstag,
+
+          <span class="gold">
+            Jacob!
+          </span>
+
+          ✨
+
+        </h1>
+
+
+        <p>
+
+          We got you something...
+
+          <br><br>
+
+          But you can't have it just yet. 😌
+
+          <br><br>
+
+          First, you have to prove that
+          you really are <strong>Jacob.</strong>
+
+        </p>
+
+
+        <button
+          onclick="showScreen('quiz')"
+        >
+
+          UNLOCK MY GIFT
+
+        </button>
+
+
+        <p class="small">
+
+          From Isabella &amp;
+          [Husband's Name] ❤️
+
+        </p>
+
       </div>
+
     </section>
 
-    <!-- FINAL VOUCHER -->
-    <section class="screen" id="final">
+
+
+    <!-- ================================= -->
+    <!-- QUIZ SCREEN -->
+    <!-- ================================= -->
+
+    <section
+      class="screen"
+      id="quiz"
+    >
+
+      <div class="card">
+
+
+        <div
+          class="question-number"
+          id="questionNumber"
+        >
+
+          Question 1 of 4
+
+        </div>
+
+
+        <div class="progress">
+
+          <span
+            id="progressBar"
+          ></span>
+
+        </div>
+
+
+        <h2
+          id="questionTitle"
+        ></h2>
+
+
+        <p
+          id="questionText"
+        ></p>
+
+
+        <div
+          id="answerArea"
+        ></div>
+
+
+        <div
+          class="feedback"
+          id="feedback"
+        ></div>
+
+
+        <button
+          id="submitButton"
+          onclick="submitAnswer()"
+        >
+
+          SUBMIT
+
+        </button>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================================= -->
+    <!-- UNLOCKED SCREEN -->
+    <!-- ================================= -->
+
+    <section
+      class="screen"
+      id="unlocked"
+    >
+
       <div class="card center">
-        <div class="eyebrow">Birthday Voucher</div>
-        <h2 id="finalTitle"></h2>
-        <div class="voucher">
-          <p id="finalMessage"></p>
-          <div class="voucher-code" id="voucherCode"></div>
-          <p class="small">
-            We will arrange the booking with you after you make your choice.
+
+
+        <div class="eyebrow">
+
+          Access Granted 🔓
+
+        </div>
+
+
+        <h2>
+
+          You Did It, Jacob! 🎉
+
+        </h2>
+
+
+        <p>
+
+          The birthday vault has been
+          unlocked.
+
+          <br><br>
+
+          But we have one last decision
+          for you...
+
+        </p>
+
+
+        <button
+          onclick="showScreen('gifts'); launchConfetti()"
+        >
+
+          REVEAL MY GIFT
+
+        </button>
+
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ================================= -->
+    <!-- MYSTERY GIFT SCREEN -->
+    <!-- ================================= -->
+
+    <section
+      class="screen"
+      id="gifts"
+    >
+
+      <div class="card center">
+
+
+        <div class="eyebrow">
+
+          One Last Surprise 🎁
+
+        </div>
+
+
+        <h2>
+
+          Choose Your Gift
+
+        </h2>
+
+
+        <p
+          id="countdownIntro"
+        >
+
+          You have one chance.
+          Choose wisely...
+
+        </p>
+
+
+        <!-- COUNTDOWN -->
+
+        <div
+          class="countdown"
+          id="countdown"
+        >
+
+          3
+
+        </div>
+
+
+
+        <!-- MYSTERY BOXES -->
+
+        <div
+          id="mysteryArea"
+          class="mystery-area hidden"
+        >
+
+
+          <p class="choose-label">
+
+            Which one is calling your name?
+
           </p>
+
+
+          <div class="gift-boxes">
+
+
+            <!-- BOX 1 -->
+
+            <button
+              class="gift-box"
+              id="box1"
+              onclick="openBox(1)"
+            >
+
+              <span class="box-lid">
+                🎀
+              </span>
+
+
+              <span class="box-body">
+                🎁
+              </span>
+
+
+              <span class="box-text">
+
+                CHOOSE ME
+
+              </span>
+
+            </button>
+
+
+
+            <!-- BOX 2 -->
+
+            <button
+              class="gift-box"
+              id="box2"
+              onclick="openBox(2)"
+            >
+
+              <span class="box-lid">
+                🎀
+              </span>
+
+
+              <span class="box-body">
+                🎁
+              </span>
+
+
+              <span class="box-text">
+
+                CHOOSE ME
+
+              </span>
+
+            </button>
+
+
+          </div>
+
+
+          <p
+            class="small"
+            id="boxHint"
+          >
+
+            Once you choose,
+            the other gift is gone forever. 👀
+
+          </p>
+
+
         </div>
-        <button class="secondary" onclick="showScreen('gifts')">CHANGE MY CHOICE</button>
+
+
       </div>
+
     </section>
+
+
+
+    <!-- ================================= -->
+    <!-- FINAL GIFT REVEAL -->
+    <!-- ================================= -->
+
+    <section
+      class="screen"
+      id="final"
+    >
+
+      <div class="card center">
+
+
+        <div class="eyebrow">
+
+          Birthday Surprise 🎉
+
+        </div>
+
+
+        <h2
+          id="finalTitle"
+        >
+
+        </h2>
+
+
+        <div class="voucher">
+
+
+          <p
+            id="finalMessage"
+          ></p>
+
+
+          <p class="small">
+
+            We'll send you the details
+            personally. ❤️
+
+          </p>
+
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
   </main>
 
+
+  <!-- JavaScript -->
+
   <script src="script.js"></script>
+
+
 </body>
+
 </html>
